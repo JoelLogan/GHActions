@@ -13,6 +13,9 @@ jobs:
       - name: Print Working Directory
         run: pwd
 
+      - name: List Directories
+        run: ls
+
       - name: Set up Python 3.10
         uses: actions/setup-python@v3
         with:
