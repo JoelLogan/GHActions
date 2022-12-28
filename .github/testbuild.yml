@@ -2,10 +2,8 @@ name: Version-Check
 
 on: [push]
 
-env:
-
 jobs:
-  build:
+  directory-check:
 
     runs-on: ubuntu-latest
 
