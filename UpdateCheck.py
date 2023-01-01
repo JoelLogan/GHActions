@@ -11,7 +11,7 @@ os.chdir(home + '/vulkan')
 print('Current Directory: ' + home)
 os.popen('git clone https://github.com/KhronosGroup/Vulkan-Headers.git').read()
 print('Vulkan Headers repo cloned')
-os.chdir(home + '/Vulkan-Headers')
+os.chdir(home + '/vulkan/Vulkan-Headers')
 print('Current Directory: ' + os.getcwd())
 
 version = os.popen('git describe --tags --abbrev=0').read().lstrip('v')
