@@ -2,6 +2,10 @@ name: Version-Check
 
 on: [push]
 
+env:
+
+  VULKAN_VERSION: 1.3.200
+
 jobs:
   directory-check:
 
@@ -9,14 +13,23 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-
-      - name: Print Working Directory
-        run: pwd
-
-      - name: List Directories
-        run: ls
-
+      
       - name: Set up Python 3.10
         uses: actions/setup-python@v3
         with:
           python-version: "3.10"
+      
+      - name: Run Vulkan Version Check
+        run: python3 ./UpdateCheck.py
+
+      - name: Commit files
+        run: |
+          git config --local user.name  ${{ github.actor }}
+          git add ./.github
+          git commit -m "Updating the Vulkan version for Github Actions."
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          force: true
+
