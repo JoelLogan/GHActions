@@ -16,4 +16,5 @@ if not version:
 else:
 	print("Using version override!")
 
-os.environ["VULKAN_VERSION"] = str(version)
+with open("VULKAN_VERSION.txt", "w") as f:
+	f.write(version)
