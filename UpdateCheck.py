@@ -29,7 +29,7 @@ if not ubuntu_codename:
 	if os.path.exists("/etc/lsb-release"):
 		file = "/etc/lsb-release"
 	else:
-		raise Excpetion("Ubuntu codename: Ubuntu codename not found. Please verify that this script is executing in an Ubuntu environment. If so, provide a codename override.")
+		raise Exception("Ubuntu codename: Ubuntu codename not found. Please verify that this script is executing in an Ubuntu environment. If so, provide a codename override.")
 	print("Using current Ubuntu codename: ", end="")
 	
 	with open(file, "r") as f:
