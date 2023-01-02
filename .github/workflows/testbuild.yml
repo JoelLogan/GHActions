@@ -19,4 +19,4 @@ jobs:
         run: python3 ./UpdateCheck.py
         
       - name: Install Vulkan
-        run: VULKAN_VERSION=$(VULKAN_VERSION.txt);sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test;wget -qO - https://packages.lunarg.com/lunarg-signing-key-pub.asc | sudo apt-key add -;sudo wget -qO /etc/apt/sources.list.d/lunarg-vulkan-$VULKAN_VERSION-focal.list https://packages.lunarg.com/vulkan/$VULKAN_VERSION/lunarg-vulkan-$VULKAN_VERSION-focal.list;sudo apt install vulkan-sdk
+        run: VULKAN_VERSION=$(VULKAN_VERSION.txt);echo "$VULKAN_VERSION";sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test;wget -qO - https://packages.lunarg.com/lunarg-signing-key-pub.asc | sudo apt-key add -;sudo wget -qO /etc/apt/sources.list.d/lunarg-vulkan-"$VULKAN_VERSION"-focal.list https://packages.lunarg.com/vulkan/"$VULKAN_VERSION"/lunarg-vulkan-"$VULKAN_VERSION"-focal.list;sudo apt install vulkan-sdk
