@@ -43,7 +43,7 @@ for action in actionnames:
                 modifiedfileread = open(os.getcwd() + '/' + action, 'r')
                 fixedlines = ""
                 for line in modifiedfileread:
-                    new_line = line.replace('True: [', 'on: [')
+                    new_line = line.replace('true: [', 'on: [')
                     fixedlines = fixedlines + new_line
                 modifiedfilewrite = open(os.getcwd() + '/' + action, 'w')
                 modifiedfilewrite.write(fixedlines)
