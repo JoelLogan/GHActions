@@ -20,9 +20,9 @@ print(version)
 if not ubuntu_codename:
 	print("Using current Ubuntu codename: ", end="")
 	if os.path.exists("/etc/os-release"):
-		ubuntu_codename = os.popen(". /etc/os-release; echo ${VERSION/*, /}").read().split("(")[-1].split(" ")[0].lower()
+		ubuntu_codename = os.popen(". /etc/os-release; echo ${VERSION_CODENAME/*, /}").read()
 	elif os.path.exists("/etc/lsb-release"):
-		ubuntu_codename = os.popen(". /etc/lsb-release; echo ${VERSION/*, /}").read().split("(")[-1].split(" ")[0].lower()
+		ubuntu_codename = os.popen(". /etc/lsb-release; echo ${VERSION_CODENAME/*, /}").read()
 	else:
 		print("ERROR: Ubuntu codename not found. Please verify that this script is executing in an Ubuntu environment. If so, provide a codename override.")
 else:
