@@ -18,4 +18,4 @@ else:
 
 # Install the most recent Vulkan version.
 print("Installing Vulkan v" + str(version))
-os.system("sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test;sudo wget -qO - https://packages.lunarg.com/lunarg-signing-key-pub.asc | sudo apt-key add -;wget -qO /etc/apt/sources.list.d/lunarg-vulkan-" + str(version) + "-focal.list https://packages.lunarg.com/vulkan/" + str(version) + "/lunarg-vulkan-" + str(version) + "-focal.list;sudo apt install vulkan-sdk")
+os.system("sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test;sudo wget -qO - https://packages.lunarg.com/lunarg-signing-key-pub.asc | sudo apt-key add -;sudo wget -qO /etc/apt/sources.list.d/lunarg-vulkan-" + str(version) + "-focal.list https://packages.lunarg.com/vulkan/" + str(version) + "/lunarg-vulkan-" + str(version) + "-focal.list;sudo apt install vulkan-sdk")
