@@ -6,7 +6,7 @@ ubuntu_codename = "" # Use this to override the ubuntu codename.
 # Get most recent Vulkan version.
 
 if not version:
-	print("Using latest Vulkan version.")
+	print("Using latest Vulkan version: v", end="")
 	tags = [i.split('/')[-1] for i in os.popen("git ls-remote --tags https://github.com/KhronosGroup/Vulkan-Headers.git").read().split()[1::2]]
 	for i in tags:
 		if i[0] == 's' and i[-1].isdigit():
@@ -14,15 +14,20 @@ if not version:
 			if new_version > version:
 				version = new_version
 else:
-	print("Using version override!")
+	print("Using version override: v", end="")
+print(version)
 
 if not ubuntu_codename:
+	print("Using current Ubuntu codename: ", end="")
 	if os.path.exists("/etc/os-release"):
 		ubuntu_codename = os.popen(". /etc/os-release; echo ${VERSION/*, /}").read().split("(")[-1].split(" ")[0].lower()
 	elif os.path.exists("/etc/lsb-release"):
 		ubuntu_codename = os.popen(". /etc/lsb-release; echo ${VERSION/*, /}").read().split("(")[-1].split(" ")[0].lower()
 	else:
 		print("ERROR: Ubuntu codename not found. Please verify that this script is executing in an Ubuntu environment. If so, provide a codename override.")
+else:
+	print("Using Ubuntu codename override: ", end="")
+print(ubuntu_codename)
 	
 	
 # Write the vulkan version to a file
