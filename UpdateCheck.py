@@ -1,6 +1,7 @@
 import os
 
 version = "" # Use this to override the vulkan version.
+ubuntu_codename = "" # Use this to override the ubuntu codename.
 
 # Get most recent Vulkan version.
 
@@ -15,6 +16,15 @@ if not version:
 else:
 	print("Using version override!")
 
+if not ubuntu_codename:
+	if os.path.exists("/etc/os-release"):
+		ubuntu_codename = os.popen(". /etc/os-release; echo ${VERSION/*, /}").read().split("(")[-1].split(" ")[0].lower()
+	elif os.path.exists("/etc/lsb-release"):
+		ubuntu_codename = os.popen(". /etc/lsb-release; echo ${VERSION/*, /}").read().split("(")[-1].split(" ")[0].lower()
+	else:
+		print("ERROR: Ubuntu codename not found. Please verify that this script is executing in an Ubuntu environment. If so, provide a codename override.")
+	
+	
 # Write the vulkan version to a file
 with open("InstallVulkan.sh", "w") as f:
-	f.write("wget -qO - https://packages.lunarg.com/lunarg-signing-key-pub.asc | sudo apt-key add -\nsudo wget -qO /etc/apt/sources.list.d/lunarg-vulkan-" + str(version) + "-focal.list https://packages.lunarg.com/vulkan/" + str(version) + "/lunarg-vulkan-" + str(version) + "-focal.list\nsudo apt update\nsudo apt install vulkan-sdk")
+	f.write("wget -qO - https://packages.lunarg.com/lunarg-signing-key-pub.asc | sudo apt-key add -\nsudo wget -qO /etc/apt/sources.list.d/lunarg-vulkan-" + str(version) + "-" + str(ubuntu_codename) + ".list https://packages.lunarg.com/vulkan/" + str(version) + "/lunarg-vulkan-" + str(version) + "-" + str(ubuntu_codename) + ".list\nsudo apt update\nsudo apt install vulkan-sdk")
