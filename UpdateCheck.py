@@ -9,7 +9,7 @@ if not version:
 	tags = [i.split('/')[-1] for i in os.popen("git ls-remote --tags https://github.com/KhronosGroup/Vulkan-Headers.git").read().split()[1::2]]
 	for i in tags:
 		if i[0] == 's' and i[-1].isdigit():
-			new_version = i[4:]
+			new_version = i[4:-2]
 			if new_version > version:
 				version = new_version
 				
