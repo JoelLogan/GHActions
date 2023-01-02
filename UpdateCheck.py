@@ -12,9 +12,9 @@ if not version:
 			new_version = i[4:-2]
 			if new_version > version:
 				version = new_version
-				
 else:
 	print("Using version override!")
 
-with open("VULKAN_VERSION.txt", "w") as f:
-	f.write(version)
+# Write the vulkan version to a file
+with open("InstallVulkan.sh", "w") as f:
+	f.write("wget -qO - https://packages.lunarg.com/lunarg-signing-key-pub.asc | sudo apt-key add -\nsudo wget -qO /etc/apt/sources.list.d/lunarg-vulkan-" + str(version) + "-focal.list https://packages.lunarg.com/vulkan/" + str(version) + "/lunarg-vulkan-" + str(version) + "-focal.list\nsudo apt update\nsudo apt install vulkan-sdk")
