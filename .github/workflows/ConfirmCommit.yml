@@ -1,0 +1,31 @@
+name: Commit Checker
+
+on: [push]
+
+jobs:
+  commitchecker:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+
+      - name: Create file
+        run: touch testfile.yml
+
+      - name: Commit files
+        run: |
+          git config --local user.name  ${{ github.actor }}
+          git add ./testfile.yml
+          git commit -m "Adding a test file."
+
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          #force: true
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }}
+
